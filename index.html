@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Little Something</title>
+
+  <!-- Elegant fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================
+       RESET
+    ========================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+
+      font-family: "Montserrat", sans-serif;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255,255,255,.13),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 85%,
+          rgba(255,180,215,.12),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #182848,
+          #4b6cb7
+        );
+    }
+
+
+    /* =========================================
+       COMMON SCREEN
+    ========================================= */
+
+    .screen {
+      position: fixed;
+      inset: 0;
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 22px;
+
+      overflow-y: auto;
+
+      opacity: 1;
+
+      transform: scale(1);
+
+      transition:
+        opacity .9s ease,
+        transform .9s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+
+      pointer-events: none;
+
+      transform: scale(1.045);
+    }
+
+
+    /* =========================================
+       BACKGROUND ORBS
+    ========================================= */
+
+    .orb {
+      position: fixed;
+
+      width: 200px;
+      height: 200px;
+
+      border-radius: 50%;
+
+      filter: blur(60px);
+
+      opacity: .2;
+
+      pointer-events: none;
+
+      animation:
+        floatingOrb 9s ease-in-out infinite;
+    }
+
+    .orb.one {
+      top: -40px;
+      left: -40px;
+
+      background: #ffd1e3;
+    }
+
+    .orb.two {
+      right: -50px;
+      bottom: -40px;
+
+      background: #a8e9ff;
+
+      animation-delay: -3s;
+    }
+
+    @keyframes floatingOrb {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-25px);
+      }
+
+    }
+
+
+    /* =========================================
+       OPENING PAGE
+    ========================================= */
+
+    #startScreen {
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(255,255,255,.08),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #182848,
+          #4b6cb7
+        );
+
+    }
+
+    .card {
+
+      width: min(430px, 100%);
+
+      padding: 45px 30px;
+
+      text-align: center;
+
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.10);
+
+      border:
+        1px solid rgba(255,255,255,.18);
+
+      backdrop-filter: blur(20px);
+
+      -webkit-backdrop-filter: blur(20px);
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+      animation:
+        cardAppear 1.1s ease;
+
+    }
+
+    @keyframes cardAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .icon {
+
+      width: 76px;
+      height: 76px;
+
+      margin: 0 auto 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 24px;
+
+      background:
+        rgba(255,255,255,.13);
+
+      font-size: 34px;
+
+      box-shadow:
+        inset 0 0 25px rgba(255,255,255,.05);
+
+    }
+
+    .card h1 {
+
+      font-size: 30px;
+
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+    }
+
+    .subtitle {
+
+      color:
+        rgba(255,255,255,.76);
+
+      line-height: 1.7;
+
+      margin-bottom: 28px;
+
+      font-size: 14px;
+
+    }
+
+    input {
+
+      width: 100%;
+
+      padding: 16px 18px;
+
+      border: none;
+
+      outline: none;
+
+      border-radius: 16px;
+
+      background:
+        rgba(255,255,255,.95);
+
+      color:
+        #27344f;
+
+      font-size: 16px;
+
+      text-align: center;
+
+      font-family:
+        "Montserrat",
+        sans-serif;
+
+    }
+
+    input::placeholder {
+      color: #9099aa;
+    }
+
+    button {
+
+      width: 100%;
+
+      margin-top: 14px;
+
+      padding: 16px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      cursor: pointer;
+
+      font-family:
+        "Montserrat",
+        sans-serif;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      color: #26334d;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #ffe3ef
+        );
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    }
+
+    button:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.18);
+
+    }
+
+    button:active {
+
+      transform:
+        scale(.98);
+
+    }
+
+    .error {
+
+      height: 20px;
+
+      margin-top: 10px;
+
+      color:
+        #ffd1dc;
+
+      font-size: 12px;
+
+    }
+
+    .hint {
+
+      margin-top: 18px;
+
+      color:
+        rgba(255,255,255,.42);
+
+      font-size: 11px;
+
+    }
+
+
+    /* =========================================
+       FORTUNE PAGE
+    ========================================= */
+
+    #fortuneScreen {
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(255,255,255,.10),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #203a43,
+          #2c5364
+        );
+
+    }
+
+    .fortune-box {
+
+      width: min(600px, 100%);
+
+      padding: 45px 30px;
+
+      text-align: center;
+
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.09);
+
+      border:
+        1px solid rgba(255,255,255,.17);
+
+      backdrop-filter: blur(20px);
+
+      -webkit-backdrop-filter: blur(20px);
+
+      box-shadow:
+        0 30px 75px rgba(0,0,0,.25);
+
+      animation:
+        fortuneAppear 1s ease;
+
+    }
+
+    @keyframes fortuneAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(30px)
+          scale(.97);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+    }
+
+    .fortune-symbol {
+
+      font-size: 56px;
+
+      margin-bottom: 18px;
+
+      animation:
+        gentleFloat 3s ease-in-out infinite;
+
+    }
+
+    @keyframes gentleFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+
+    }
+
+    .fortune-box h2 {
+
+      font-size:
+        clamp(29px, 7vw, 46px);
+
+      font-weight: 400;
+
+      margin-bottom: 20px;
+
+    }
+
+    .fortune-box h2 span {
+
+      color:
+        #ffe0a8;
+
+    }
+
+    .fortune-divider {
+
+      width: 55px;
+
+      height: 2px;
+
+      margin: 25px auto;
+
+      background:
+        rgba(255,224,168,.7);
+
+    }
+
+    .fortune-text {
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(20px, 4vw, 25px);
+
+      line-height: 1.7;
+
+      color:
+        rgba(255,255,255,.9);
+
+    }
+
+    .fortune-hint {
+
+      margin-top: 30px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.12);
+
+      color:
+        rgba(255,255,255,.50);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+    }
+
+    .special-hint {
+
+      display: block;
+
+      margin-top: 7px;
+
+      color:
+        rgba(255,224,168,.78);
+
+    }
+
+
+    /* =========================================
+       SPECIAL / PRIVATE PAGE
+    ========================================= */
+
+    #messageScreen {
+
+      background:
+
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(255,195,220,.18),
+          transparent 32%
+        ),
+
+        radial-gradient(
+          circle at 15% 85%,
+          rgba(196,151,255,.10),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #241528,
+          #51263e,
+          #8e4162
+        );
+
+    }
+
+
+    /* Soft glow behind message */
+
+    #messageScreen::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,160,200,.08);
+
+      filter: blur(90px);
+
+      pointer-events: none;
+
+      animation:
+        messageGlow 6s ease-in-out infinite;
+
+    }
+
+    @keyframes messageGlow {
+
+      0%,
+      100% {
+        transform: scale(.9);
+        opacity: .5;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: .9;
+      }
+
+    }
+
+
+    .message-box {
+
+      position: relative;
+
+      width:
+        min(720px, 100%);
+
+      padding:
+        35px 25px;
+
+      text-align: center;
+
+      z-index: 2;
+
+      animation:
+        messageAppear 1.7s ease;
+
+    }
+
+    @keyframes messageAppear {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(40px)
+          scale(.94);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+      }
+
+    }
+
+
+    /* Heart */
+
+    .heart {
+
+      font-size: 62px;
+
+      margin-bottom: 15px;
+
+      filter:
+        drop-shadow(
+          0 5px 20px
+          rgba(255,100,160,.35)
+        );
+
+      animation:
+        heartbeat 1.8s
+        ease-in-out
+        infinite;
+
+    }
+
+    @keyframes heartbeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.08);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.12);
+      }
+
+      60% {
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* Secret label */
+
+    .secret-label {
+
+      display:
+        inline-block;
+
+      padding:
+        8px 17px;
+
+      border-radius:
+        40px;
+
+      background:
+        rgba(255,255,255,.08);
+
+      border:
+        1px solid
+        rgba(255,255,255,.17);
+
+      color:
+        rgba(255,235,242,.75);
+
+      font-family:
+        "Montserrat",
+        sans-serif;
+
+      font-size: 10px;
+
+      letter-spacing:
+        2.2px;
+
+      margin-bottom: 24px;
+
+      backdrop-filter:
+        blur(10px);
+
+    }
+
+
+    /* Main heading */
+
+    .message-box h2 {
+
+      font-family:
+        "Dancing Script",
+        cursive;
+
+      font-size:
+        clamp(52px, 12vw, 88px);
+
+      font-weight: 600;
+
+      line-height: 1;
+
+      margin-bottom: 25px;
+
+      color:
+        #fff4f8;
+
+      text-shadow:
+        0 5px 30px
+        rgba(255,150,190,.22);
+
+    }
+
+
+    /* Main message */
+
+    .message {
+
+      max-width:
+        620px;
+
+      margin:
+        0 auto;
+
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(21px, 4.5vw, 28px);
+
+      font-weight: 400;
+
+      line-height: 1.75;
+
+      color:
+        rgba(255,245,248,.91);
+
+      text-shadow:
+        0 2px 15px
+        rgba(0,0,0,.15);
+
+    }
+
+
+    /* Decorative divider */
+
+    .message-divider {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap: 13px;
+
+      margin:
+        28px 0;
+
+      color:
+        rgba(255,220,232,.7);
+
+    }
+
+    .message-divider::before,
+    .message-divider::after {
+
+      content: "";
+
+      width:
+        65px;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(255,220,232,.5)
+        );
+
+    }
+
+    .message-divider::after {
+
+      background:
+        linear-gradient(
+          to left,
+          transparent,
+          rgba(255,220,232,.5)
+        );
+
+    }
+
+
+    /* Signature */
+
+    .signature {
+
+      margin-top:
+        30px;
+
+      font-family:
+        "Dancing Script",
+        cursive;
+
+      font-size:
+        clamp(24px, 5vw, 31px);
+
+      color:
+        rgba(255,225,235,.78);
+
+    }
+
+
+    /* =========================================
+       FLOATING HEARTS
+    ========================================= */
+
+    .floating-heart {
+
+      position:
+        fixed;
+
+      bottom:
+        -30px;
+
+      z-index:
+        10;
+
+      pointer-events:
+        none;
+
+      color:
+        rgba(255,210,225,.7);
+
+      animation:
+        rise 6s
+        linear
+        forwards;
+
+    }
+
+    @keyframes rise {
+
+      0% {
+
+        transform:
+          translateY(0)
+          rotate(0deg)
+          scale(.8);
+
+        opacity: 0;
+
+      }
+
+      15% {
+        opacity: .75;
+      }
+
+      100% {
+
+        transform:
+          translateY(-110vh)
+          rotate(30deg)
+          scale(1.1);
+
+        opacity: 0;
+
+      }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 500px) {
+
+      .screen {
+        padding: 18px;
+      }
+
+      .card {
+        padding: 36px 22px;
+      }
+
+      .fortune-box {
+        padding: 35px 22px;
+      }
+
+      .message-box {
+        padding: 25px 14px;
+      }
+
+      .message {
+        line-height: 1.65;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- Background -->
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+
+  <!-- =========================================
+       SCREEN 1
+       ========================================= -->
+
+  <section
+    id="startScreen"
+    class="screen">
+
+    <div class="card">
+
+      <div class="icon">
+        ✦
+      </div>
+
+      <h1>
+        A Little Something
+      </h1>
+
+      <p class="subtitle">
+        Just a tiny interactive page.<br>
+        Let's see if you know what to enter.
+      </p>
+
+      <input
+        id="nameInput"
+        type="text"
+        autocomplete="off"
+        placeholder="Enter a name"
+        aria-label="Enter a name"
+      >
+
+      <button
+        onclick="checkName()">
+
+        Continue
+
+      </button>
+
+      <div
+        id="error"
+        class="error">
+      </div>
+
+      <div class="hint">
+        There might be something waiting
+        for the right person.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       SCREEN 2
+       FORTUNE
+       ========================================= -->
+
+  <section
+    id="fortuneScreen"
+    class="screen hidden">
+
+    <div class="fortune-box">
+
+      <div class="fortune-symbol">
+        ✨
+      </div>
+
+      <h2>
+        A little fortune for
+        <span id="visitorName">
+          you
+        </span>
+      </h2>
+
+      <div class="fortune-divider"></div>
+
+      <p
+        id="fortuneText"
+        class="fortune-text">
+      </p>
+
+      <div class="fortune-hint">
+
+        Sometimes the smallest things
+        lead to something unexpectedly good.
+
+        <span class="special-hint">
+          ✦ Maybe try a special name next time.
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       SCREEN 3
+       SPECIAL MESSAGE
+       ========================================= -->
+
+  <section
+    id="messageScreen"
+    class="screen hidden">
+
+    <div class="message-box">
+
+      <div class="heart">
+        ❤️
+      </div>
+
+      <div class="secret-label">
+        A SECRET MESSAGE — ONLY FOR YOU
+      </div>
+
+      <h2>
+        Hey, you...
+      </h2>
+
+      <div class="message-divider">
+        ✦
+      </div>
+
+      <p class="message">
+
+        I'm missing you.
+        <br>
+        More than I probably know how to say.
+
+        <br><br>
+
+        I'm waiting for you
+        and hoping you'll be back soon.
+
+        Even when I can't message you,
+        just know that you're somewhere
+        in my thoughts.
+
+        <br><br>
+
+        So if you're reading this...
+        this little message was meant
+        only for you. ❤️
+
+      </p>
+
+      <div class="message-divider">
+        ✦
+      </div>
+
+      <div class="signature">
+        — Someone who's waiting for you
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script>
+
+    /* =========================================
+       ELEMENTS
+       ========================================= */
+
+    const nameInput =
+      document.getElementById("nameInput");
+
+    const error =
+      document.getElementById("error");
+
+    const startScreen =
+      document.getElementById("startScreen");
+
+    const fortuneScreen =
+      document.getElementById("fortuneScreen");
+
+    const messageScreen =
+      document.getElementById("messageScreen");
+
+    const visitorName =
+      document.getElementById("visitorName");
+
+    const fortuneText =
+      document.getElementById("fortuneText");
+
+
+    /* =========================================
+       FORTUNES
+       ========================================= */
+
+    const fortunes = [
+
+      "Something you've been hoping for may be closer than you think. Keep going, stay positive, and let things unfold naturally.",
+
+      "A pleasant surprise may find its way to you soon. Sometimes the best moments arrive when you aren't expecting them.",
+
+      "The next few days may bring you a reason to smile. Trust yourself and don't be afraid to follow a good opportunity.",
+
+      "Good things are quietly making their way toward you. Be patient, keep your heart open, and enjoy the little moments.",
+
+      "You may soon hear something you've been waiting to hear. Until then, keep your positive energy alive.",
+
+      "A new little chapter may be beginning for you. Whatever happens next, remember that something beautiful can grow from small beginnings."
+
+    ];
+
+
+    /* =========================================
+       CHECK NAME
+       ========================================= */
+
+    function checkName() {
+
+      const enteredName =
+        nameInput.value.trim();
+
+
+      if (!enteredName) {
+
+        error.textContent =
+          "Please enter a name.";
+
+        nameInput.focus();
+
+        return;
+
+      }
+
+
+      /*
+       * CASE-INSENSITIVE SPECIAL NAME
+       *
+       * chinni
+       * CHINNI
+       * Chinni
+       * cHiNnI
+       *
+       * all work.
+       */
+
+      const normalizedName =
+        enteredName.toLowerCase();
+
+
+      /* =======================================
+         SPECIAL PERSON
+         ======================================= */
+
+      if (
+        normalizedName === "chinni"
+      ) {
+
+        error.textContent = "";
+
+        startScreen
+          .classList
+          .add("hidden");
+
+
+        setTimeout(() => {
+
+          messageScreen
+            .classList
+            .remove("hidden");
+
+          createHearts();
+
+        }, 700);
+
+
+        return;
+
+      }
+
+
+      /* =======================================
+         EVERY OTHER PERSON
+         ======================================= */
+
+      visitorName.textContent =
+        enteredName;
+
+
+      const randomIndex =
+        Math.floor(
+          Math.random() *
+          fortunes.length
+        );
+
+
+      fortuneText.textContent =
+        fortunes[randomIndex];
+
+
+      error.textContent = "";
+
+
+      startScreen
+        .classList
+        .add("hidden");
+
+
+      setTimeout(() => {
+
+        fortuneScreen
+          .classList
+          .remove("hidden");
+
+      }, 700);
+
+    }
+
+
+    /* =========================================
+       ENTER KEY
+       ========================================= */
+
+    nameInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Enter"
+        ) {
+
+          checkName();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================
+       FLOATING HEARTS
+       ========================================= */
+
+    function createHearts() {
+
+      for (
+        let i = 0;
+        i < 24;
+        i++
+      ) {
+
+        setTimeout(() => {
+
+          const heart =
+            document.createElement("div");
+
+
+          heart.className =
+            "floating-heart";
+
+
+          heart.textContent =
+            Math.random() > .5
+              ? "♡"
+              : "♥";
+
+
+          heart.style.left =
+            Math.random() * 100 +
+            "vw";
+
+
+          heart.style.animationDuration =
+            (4 + Math.random() * 4) +
+            "s";
+
+
+          heart.style.fontSize =
+            (14 + Math.random() * 22) +
+            "px";
+
+
+          document.body.appendChild(
+            heart
+          );
+
+
+          setTimeout(() => {
+
+            heart.remove();
+
+          }, 8500);
+
+
+        }, i * 200);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
